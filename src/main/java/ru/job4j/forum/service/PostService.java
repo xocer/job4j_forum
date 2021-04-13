@@ -2,34 +2,30 @@ package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
+import ru.job4j.forum.store.PostRepository;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 @Service
 public class PostService {
 
-    private final List<Post> posts = new ArrayList<>();
+    private final PostRepository posts;
 
-    public PostService() {
-        Post post = Post.of("test");
-        post.setId(1);
-        post.setDesc("abcdefg");
-        post.setCreated(Calendar.getInstance());
-        posts.add(post);
-//        posts.add(Post.of("Продаю машину ладу 01."));
+    public PostService(PostRepository posts) {
+        this.posts = posts;
     }
 
     public List<Post> getAll() {
-        return posts;
-    }
+        List<Post> rsl = new ArrayList<>();
+        posts.findAll().forEach(rsl::add);
+        return rsl;    }
 
     public Post getById(int id) {
-        return posts.stream().filter(post -> post.getId() == id).findFirst().get();
+        return posts.findById(Long.valueOf(id)).get();
     }
 
     public void save(Post post) {
-        posts.add(post);
+        posts.save(post);
     }
 }

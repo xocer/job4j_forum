@@ -20,7 +20,7 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <td>${post.name}</td>
-            <td>${post.desc}</td>
+            <td>${post.description}</td>
             <td>${post.created}</td>
         </div>
     </div>
