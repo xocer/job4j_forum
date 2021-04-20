@@ -4,3 +4,24 @@ jdk:
   - openjdk15
 
 sudo: false
+
+env:
+  global:
+    - CODECOV_TOKEN="e1fc76bf-1dc6-4f3e-b611-bbe5b12fb3e7"
+
+services:
+  - postgresql
+before_install:
+  - psql -c 'create database forum;' -U postgres
+  -
+# после выполнения сборки запустить скрипт, который будет собирать статистику по JaCoCo
+# Здесь используется сторонний сервис https://codecov.io/
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    recipients:
+      -vitamin9292@mail.ru
+    on_success: never # default: change
+    on_failure: always # default: always
