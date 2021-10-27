@@ -1,23 +1,23 @@
 package ru.job4j.forum.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@EqualsAndHashCode
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(name = "users")
 public class User {
-    private int id;
-    private String name;
-    private String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String username;
     private String password;
+    private boolean enabled;
+    @ManyToOne
+    @JoinColumn(name = "authority_id")
+    private Authority authority;
 
-    public static User of(String name, String email, String password) {
-        User user = new User();
-        user.name = name;
-        user.email = email;
-        user.password = password;
-        return user;
+    public User() {
     }
 }

@@ -1,15 +1,12 @@
 package ru.job4j.forum.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.Date;
 
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -18,11 +15,13 @@ public class Post {
     private Long id;
     private String name;
     private String description;
-    private Calendar created;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date created;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public static Post of(String name) {
-        Post post = new Post();
-        post.name = name;
-        return post;
+    public Post() {
+        created = new Date();
     }
 }
