@@ -21,11 +21,15 @@ public class PostService {
         posts.findAll().forEach(rsl::add);
         return rsl;    }
 
-    public Post getById(int id) {
-        return posts.findById(Long.valueOf(id)).get();
+    public Post getById(long id) {
+        return posts.findById(id).orElse(new Post());
     }
 
     public void save(Post post) {
         posts.save(post);
+    }
+
+    public void delete(long id) {
+        posts.deleteById(id);
     }
 }

@@ -2,23 +2,21 @@ package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
+import ru.job4j.forum.store.UserRepository;
 
 @Service
 public class UserService {
-    private final List<User> users = new ArrayList<>();
+    private final UserRepository users;
 
-    public UserService() {
-        users.add(User.of("user", "email@mail.ru", "1"));
+    public UserService(UserRepository users) {
+        this.users = users;
     }
 
     public void save(User user) {
-        users.add(user);
+        users.save(user);
     }
 
-    public User findUserByName(String name) {
-        return users.stream().filter(user -> user.getName().equals(name)).findFirst().get();
+    public User getUserByName(String username) {
+        return users.findUserByUsername(username);
     }
 }
