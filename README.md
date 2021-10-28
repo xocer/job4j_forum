@@ -38,7 +38,7 @@
 ![ScreenShot](images/главная.PNG)
 
 ### Создание поста
-![ScreenShot](images/создание_заявки.PNG)
+![ScreenShot](images/создание_поста.PNG)
 
 ### Редактирование поста
 ![ScreenShot](images/апдейт.PNG)
