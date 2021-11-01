@@ -51,6 +51,7 @@
             <div class="card-body">
                 <form id='reg_form' action="<c:url value='/reg'/>" method='POST'>
                     <input type="hidden" name="authority" value="1">
+                    <input type="hidden" name="enabled" value="true">
 
                     <div class="form-group">
                         <label for="username">Имя пользователя:</label>
