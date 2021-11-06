@@ -6,11 +6,16 @@
 ## О проекте
 #### Сервис предоставляет возможности классического форума.
 
+### Демо-стенд [Heroku](https://quiet-cove-96836.herokuapp.com/)
+
+#### Данные для входа:
+* логин - test
+* пароль - secret
+
 ## Стек
 * Back-end
     * Java 15
     * Spring (Boot, MVC, Data, Security)
-    * Apache Tomcat
     * Postgres
     * Maven
 
